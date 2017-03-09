@@ -1,0 +1,23 @@
+Configuring taggy-0.2.0...
+Building taggy-0.2.0...
+Preprocessing library taggy-0.2.0...
+[1 of 6] Compiling Text.Taggy.Entities ( src/Text/Taggy/Entities.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy/Entities.o )
+[2 of 6] Compiling Text.Taggy.Types ( src/Text/Taggy/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy/Types.o )
+[3 of 6] Compiling Text.Taggy.Parser ( src/Text/Taggy/Parser.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy/Parser.o )
+[4 of 6] Compiling Text.Taggy.DOM   ( src/Text/Taggy/DOM.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy/DOM.o )
+[5 of 6] Compiling Text.Taggy.Renderer ( src/Text/Taggy/Renderer.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy/Renderer.o )
+
+src/Text/Taggy/Renderer.hs:13:1: Warning:
+    The import of ‘Data.Foldable’ is redundant
+      except perhaps to import instances from ‘Data.Foldable’
+    To import instances alone, use: import Data.Foldable()
+[6 of 6] Compiling Text.Taggy       ( src/Text/Taggy.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/Text/Taggy.o )
+In-place registering taggy-0.2.0...
+Preprocessing executable 'taggy' for taggy-0.2.0...
+[1 of 1] Compiling Main             ( example/taggy.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/taggy/taggy-tmp/Main.o )
+Linking .stack-work/dist/x86_64-osx/Cabal-1.22.5.0/build/taggy/taggy ...
+Installing library in
+/Users/G4BB3R/.stack/snapshots/x86_64-osx/lts-6.30/7.10.3/lib/x86_64-osx-ghc-7.10.3/taggy-0.2.0-BoWFM02SModBUMLyXFxwcV
+Installing executable(s) in
+/Users/G4BB3R/.stack/snapshots/x86_64-osx/lts-6.30/7.10.3/bin
+Registering taggy-0.2.0...

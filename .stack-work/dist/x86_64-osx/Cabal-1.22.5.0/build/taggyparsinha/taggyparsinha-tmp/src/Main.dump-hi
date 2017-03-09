@@ -1,0 +1,263 @@
+
+==================== FINAL INTERFACE ====================
+2017-03-08 23:19:02.621934 UTC
+
+interface main@main:Main 7103
+  interface hash: 1321ed8f1bffcd0c14519be3e73c5f0a
+  ABI hash: d668d516cee1663b69a9c8a0715b786d
+  export-list hash: c79a7e1f32831ef05b9e1a71a0a2a808
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: a74438a1b6b6cbf83b9bee291085876c
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Main.content
+  Main.handleCss
+  Main.main
+module dependencies: ParseCss
+package dependencies: vector-0.11.0.0@0ZrFZaybobA9SgCG6qBNKE
+                      primitive-0.6.1.0@4YeeGvBMtRnAzsdkC5kA7O
+                      mtl-2.2.1@FU2dgI72hN9AAckXjzRNTy
+                      array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      attoparsec-0.13.1.0@attop_8581Reke8JhDGUOhgEvEo2 base-4.8.2.0
+                      binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi
+                      blaze-markup-0.7.1.1@blaze_IhkRV7UQ5SSAanzHpfcTtX
+                      bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6
+                      containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59
+                      fail-4.9.0.0@fail_2xB1AvdW34sDm9N3JOe33G ghc-prim-0.4.0.0
+                      hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I integer-gmp-1.0.0.0
+                      parsec-3.1.11@parse_4cNTmJBUHXbDP5aJ22J6nA
+                      scientific-0.3.4.9@scien_8w80pLQzIzIITauPKOpcjn
+                      semigroups-0.18.2@semig_FuCw7cC8b6i7UVGFSQcl1F
+                      tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6
+                      taggy-0.2.0@taggy_BoWFM02SModBUMLyXFxwcV
+                      text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne
+                      transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF
+                      unordered-containers-0.2.7.2@unord_L90tfN88tEgEKJ0ds8uDrk
+orphans: vector-0.11.0.0@0ZrFZaybobA9SgCG6qBNKE:Data.Vector.Fusion.Bundle
+         attoparsec-0.13.1.0@attop_8581Reke8JhDGUOhgEvEo2:Data.Attoparsec.Text.Internal
+         base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+         binary-0.7.5.0@binar_3uXFWMoAGBg0xKP9MHKRwi:Data.Binary.Generic
+         bytestring-0.10.6.0@bytes_6VWy06pWzJq9evDvK2d4w6:Data.ByteString.Builder
+         hashable-1.2.4.0@hasha_EalUWgp8NarBYWPbvYAD8I:Data.Hashable.Generic
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Show
+         transformers-0.4.2.0@trans_GZTjP9K5WFq01xC9BAGQpF:Control.Monad.Trans.Error
+family instance modules: vector-0.11.0.0@0ZrFZaybobA9SgCG6qBNKE:Data.Vector
+                         primitive-0.6.1.0@4YeeGvBMtRnAzsdkC5kA7O:Control.Monad.Primitive
+                         attoparsec-0.13.1.0@attop_8581Reke8JhDGUOhgEvEo2:Data.Attoparsec.Internal.Types
+                         base-4.8.2.0:Control.Applicative base-4.8.2.0:Data.Either
+                         base-4.8.2.0:Data.Functor.Identity base-4.8.2.0:Data.Monoid
+                         base-4.8.2.0:Data.Type.Equality base-4.8.2.0:Data.Void
+                         base-4.8.2.0:GHC.Exts base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntMap.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.IntSet.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Sequence
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
+                         semigroups-0.18.2@semig_FuCw7cC8b6i7UVGFSQcl1F:Data.List.NonEmpty
+                         semigroups-0.18.2@semig_FuCw7cC8b6i7UVGFSQcl1F:Data.Semigroup
+                         tagged-0.8.4@tagge_LPeicl3HxVfGUMMwMEsAE6:Data.Tagged
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text
+                         text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy
+                         unordered-containers-0.2.7.2@unord_L90tfN88tEgEKJ0ds8uDrk:Data.HashMap.Base
+                         unordered-containers-0.2.7.2@unord_L90tfN88tEgEKJ0ds8uDrk:Data.HashSet
+import  -/  attoparsec-0.13.1.0@attop_8581Reke8JhDGUOhgEvEo2:Data.Attoparsec.Text.Lazy 36827235c10c62564093c6ab493f7307
+import  -/  base-4.8.2.0:Control.Exception e9090e246fba030faecf7b81b3e8e320
+import  -/  base-4.8.2.0:Control.Exception.Base b99410eaf0cc6bb119b1d45a497c1b10
+import  -/  base-4.8.2.0:Data.Either e8724afd65fd432cfe9a54014f5f762d
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.IO.Exception e38c1261b70caecb7af416b94c82c925
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  base-4.8.2.0:System.IO 0899686bfc1d9ef72dff3de85e99862a
+import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
+import  -/  ParseCss f64e4485167c9f44131106b2d6f4d69d
+  exports: 529bf0b85185fe707a535ddfdfe28c27
+  parseCss 18baf683811eff09046ba93179f965cf
+import  -/  taggy-0.2.0@taggy_BoWFM02SModBUMLyXFxwcV:Text.Taggy 0ac8bc8d8eebb09cad8a4ec275605811
+import  -/  text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy 3da55f95f1184a010349d5d7f5d2ffbf
+import  -/  text-1.2.2.1@text_HmqVQnZSpjaC156ABqPhne:Data.Text.Lazy.IO 961a8565a612cd6faffd956b46f6e773
+9e81721d7a494d1dac3580581eb79e17
+  $s$fShow[]2 :: [ParseCss.Ruleset] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: [ParseCss.Ruleset] ->
+                 GHC.Show.showList__
+                   @ ParseCss.Ruleset
+                   ParseCss.$fShowRuleset1
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+e081344764dd16f2968993c528e61b80
+  content :: Data.Text.Internal.Lazy.Text
+  {- Unfolding: (Data.Text.Lazy.unpackCString#
+                   "<html><p>aaaa</p>KKKK</html>"#) -}
+450068cec845a0654eabb4c6bcd93eff
+  handleCss ::
+    Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String
+    -> GHC.Types.IO ()
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Main.handleCss1
+                  `cast`
+                (<Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String>_R
+                 ->_R Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
+dbc5dd3f14dc1876abbd748a7795fae8
+  handleCss1 ::
+    Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: (\ result :: Data.Either.Either
+                               GHC.IO.Exception.IOError GHC.Base.String
+                   eta :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case result of wild {
+                   Data.Either.Left err
+                   -> GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        (GHC.CString.unpackAppendCString#
+                           "[ERRO] "#
+                           (case err of ww { GHC.IO.Exception.IOError ww1 ww2 ww3 ww4 ww5 ww6 ->
+                            GHC.IO.Exception.$w$cshowsPrec2
+                              ww1
+                              ww2
+                              ww3
+                              ww4
+                              ww6
+                              (GHC.Types.[] @ GHC.Types.Char) }))
+                        GHC.Types.True
+                        eta
+                   Data.Either.Right ok
+                   -> case (Text.Parsec.Prim.runPT
+                              @ GHC.Base.String
+                              @ ()
+                              @ Data.Functor.Identity.Identity
+                              @ [ParseCss.Ruleset]
+                              @ GHC.Types.Char
+                              (Text.Parsec.String.$s$fStream[]mtok @ GHC.Types.Char)
+                              ParseCss.parseCss3
+                                `cast`
+                              (Sym (Text.Parsec.Prim.NTCo:ParsecT[0]
+                                        <GHC.Base.String>_R
+                                        <()>_R
+                                        <Data.Functor.Identity.Identity>_R
+                                        <[ParseCss.Ruleset]>_R))
+                              GHC.Tuple.()
+                              ParseCss.parseCss2
+                              ok)
+                             `cast`
+                           (Data.Functor.Identity.NTCo:Identity[0]
+                                <Data.Either.Either
+                                   Text.Parsec.Error.ParseError [ParseCss.Ruleset]>_R) of wild1 {
+                        Data.Either.Left err'
+                        -> GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (GHC.CString.unpackAppendCString#
+                                "[PARSE CSS FALHOU]"#
+                                (Text.Parsec.Error.$fShowParseError_$cshow err'))
+                             GHC.Types.True
+                             eta
+                        Data.Either.Right ok'
+                        -> GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (Main.$s$fShow[]2 ok')
+                             GHC.Types.True
+                             eta } }) -}
+bf7dbffcffadf6cd050273382176c5c3
+  main :: GHC.Types.IO ()
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R)) -}
+661839817f37124d8cfe1d0931f0a763
+  main1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: (\ s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case GHC.Prim.catch#
+                        @ (Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String)
+                        @ GHC.Exception.SomeException
+                        Main.main3
+                        Main.main2
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 Main.handleCss1 ipv1 ipv }) -}
+5b424cb6a16f05faa8359b9b991a12c4
+  main2 ::
+    GHC.Exception.SomeException
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String #)
+  {- Arity: 2, HasNoCafRefs,
+     Unfolding: (\ e1 :: GHC.Exception.SomeException[OneShot]
+                   eta1 :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case e1 of wild { GHC.Exception.SomeException e100 $dException1 e2 ->
+                 case (GHC.Exception.$p1Exception @ e100 $dException1)
+                        `cast`
+                      (Data.Typeable.Internal.NTCo:Typeable[0] <*>_N <e100>_N)
+                        (GHC.Prim.proxy#
+                           @ *
+                           @ e100) of wild1 { Data.Typeable.Internal.TypeRep dt dt1 ds2 ds3 ds4 ->
+                 case dt of wild2 {
+                   DEFAULT
+                   -> GHC.Prim.raiseIO#
+                        @ GHC.Exception.SomeException
+                        @ (Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String)
+                        wild
+                        eta1
+                   __word 7238999624334008818
+                   -> case dt1 of wild3 {
+                        DEFAULT
+                        -> GHC.Prim.raiseIO#
+                             @ GHC.Exception.SomeException
+                             @ (Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String)
+                             wild
+                             eta1
+                        __word 10769272474234763719
+                        -> (# eta1,
+                              Data.Either.Left
+                                @ GHC.IO.Exception.IOError
+                                @ GHC.Base.String
+                                e2
+                                  `cast`
+                                (UnivCo mkUnsafeCo representational e100 GHC.IO.Exception.IOException) #) } } } }) -}
+e490509638f2c663e4b9f9b20ff81cd1
+  main3 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Either.Either GHC.IO.Exception.IOError GHC.Base.String #)
+  {- Arity: 1,
+     Unfolding: (\ s :: GHC.Prim.State# GHC.Prim.RealWorld[OneShot] ->
+                 case GHC.IO.Handle.FD.openFile1
+                        Main.main4
+                        GHC.IO.IOMode.ReadMode
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case GHC.IO.Handle.Text.hGetContents1
+                        ipv1
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 (# ipv2,
+                    Data.Either.Right
+                      @ GHC.IO.Exception.IOError
+                      @ GHC.Base.String
+                      ipv3 #) } }) -}
+0e09df42f0931e512fe9a5058b1a1c21
+  main4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "teste.css"#) -}
+69c25a11cdcda29577d40c09d78caf64
+  main5 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (GHC.TopHandler.runMainIO1
+                   @ ()
+                   Main.main1 `cast` (Sym (GHC.Types.NTCo:IO[0] <()>_R))) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+
