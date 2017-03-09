@@ -105,5 +105,5 @@
   (major1) == 0 && (major2) <  29 || \
   (major1) == 0 && (major2) == 29 && (minor) <= 1)
 
-#define CURRENT_PACKAGE_KEY "taggy_0DYtMuJwyzE3HdbpxHyrlT"
+#define CURRENT_PACKAGE_KEY "tcc_AMMUxzUzQPYIIxKCw6IjLW"
 

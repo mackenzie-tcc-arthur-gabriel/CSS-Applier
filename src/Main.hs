@@ -30,5 +30,5 @@ handleCss result =
 
 main :: IO ()
 main =
-    CE.try (readFile "teste.css") >>= handleCss
+    CE.try (readFile "src/teste.css") >>= handleCss
 
