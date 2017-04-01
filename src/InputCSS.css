@@ -1,0 +1,23 @@
+p {
+    color: #FF0000;
+}
+
+.red {
+	font-size: 30px;
+	color: #FF0000;
+}
+
+.blue {
+	font-size: 30px;
+	color: #0000FF;
+}
+
+#blue {
+	font-size: 15px;
+	color: #0000FF;
+}
+
+#red {
+	font-size: 15px;
+	color: #FF0000;
+}

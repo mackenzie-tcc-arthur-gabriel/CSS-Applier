@@ -9,9 +9,6 @@ import qualified Data.Text.Lazy.IO as T
 import qualified Data.Text.Lazy as TL
 import Text.Taggy (run)
 
-content =
-    TL.pack "<html><p>aaaa</p>KKKK</html>"
-
 handleCss :: Either IOError String -> IO ()
 handleCss result =
     case result of
@@ -30,5 +27,5 @@ handleCss result =
 
 main :: IO ()
 main =
-    CE.try (readFile "src/teste.css") >>= handleCss
+    CE.try (readFile "src/InputCSS.css") >>= handleCss
 
