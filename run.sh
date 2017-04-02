@@ -1,1 +1,0 @@
-stack setup && stack exec tcc

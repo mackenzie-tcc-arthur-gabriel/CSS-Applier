@@ -1,1 +1,1 @@
-stack setup && stack exec tcc
+stack build && stack setup && stack exec tcc
