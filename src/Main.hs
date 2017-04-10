@@ -47,11 +47,14 @@ handleHtml result =
                     Left err ->
                         putStrLn err
 
-                    Right tags ->
+                    Right tags -> do
+                        mapM_ print tags
+                        putStrLn "\n"
                         tags
-                            |> mapM_ print
-                            -- |> listToTree
-                            -- |> print
+                            |> listToTree
+                            |> (flip (!!) 0)
+                            |> show
+                            |> putStrLn
 
 
 
@@ -62,5 +65,7 @@ main = do
     -- CE.try (readFile "src/InputCSS.css") >>= handleCss
     putStrLn "--------------------------------------------------\n"
     CE.try (readFile "src/InputHTML.html") >>= handleHtml
+
+    -- print $ splitWhile (<5) [1..10]
 
 
