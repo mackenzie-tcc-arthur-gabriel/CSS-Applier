@@ -3,8 +3,8 @@ module Main where
 import ParseCss (parseCss)
 import Tree 
 
-import Control.Exception as CE
-
+import Control.Exception as CE -- CE.try
+import Data.Either.Utils
 import Data.Attoparsec.Text.Lazy (eitherResult)
 import qualified Data.Text.Lazy.IO as T
 import qualified Data.Text.Lazy as TL
@@ -30,6 +30,7 @@ handleCss result =
 
 (|>) = flip ($)
 
+{- 
 handleHtml :: Either IOError String -> IO ()
 handleHtml result =
     case result of
@@ -55,17 +56,31 @@ handleHtml result =
                             |> (flip (!!) 0)
                             |> show
                             |> putStrLn
+-}
 
-
-
-
+strToDom :: String -> DOM
+strToDom str =
+    str
+        |> TL.pack
+        |> Text.Taggy.run True
+        |> eitherResult
+        |> fromRight
+        |> listToTree
+        |> (flip (!!) 0)
 
 main :: IO ()
 main = do
-    -- CE.try (readFile "src/InputCSS.css") >>= handleCss
-    putStrLn "--------------------------------------------------\n"
-    CE.try (readFile "src/InputHTML.html") >>= handleHtml
 
-    -- print $ splitWhile (<5) [1..10]
+    putStrLn "--------------------------------------------------\n"
+        
+    htmlResult <- readFile "src/InputHTML.html"
+    cssResult  <- readFile "src/InputCSS.css"
+
+    let dom  = strToDom htmlResult
+    let css  = fromRight . parseCss $ cssResult
+    let dom' = applyCssRules css dom
+
+    print dom'
+    
 
 

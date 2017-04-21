@@ -4,6 +4,8 @@ import Prelude as P
 import Text.Taggy.Types
 import Data.Text as T
 
+import ParseCss
+
 data DOM
     = Node
         String
@@ -26,14 +28,50 @@ domToStr n breakLine (Node name attrs doms) =
         lastIndex  = P.length doms
         indexedDom = P.zip doms [1..]
         childs     = P.concatMap (\(dom, i) -> domToStr (n + 1) (i /= lastIndex) dom) indexedDom
+        attrs'     =
+            if P.length attrs > 0 then
+                " " ++ P.concatMap (\(k, v) -> k ++ "=\"" ++ v ++ "\"") attrs
+            else
+                ""
     in
-        spaces n ++ "<"  ++ name ++ ">\n" ++ childs ++ "\n" ++
+        spaces n ++ "<"  ++ name ++ attrs' ++ ">\n" ++ childs ++ "\n" ++
         spaces n ++ "</" ++ name ++ ">"   ++ (if breakLine then "\n" else "")
 
+matchSelector :: String -> String -> [Rule] -> (Bool, Bool)
+matchSelector ruleName tagName rules =
+    flip P.any rules (\(k, v) ->
+        if k == "id" then
+            ("#" ++ v == ruleName, True)
+        else if k == "class" then
+            ("." ++ v == ruleName, True)
+        else if ruleName == tagName then
+            (True, False)
+        else
+            (False, False))
 
-listToTree :: [Tag] -> [DOM]
-listToTree tags =
-    listToTree' tags []
+applyCssRule :: Ruleset -> DOM -> DOM
+applyCssRule (rule@(ruleName, rules)) dom =
+    case dom of
+        Texto str -> Texto str
+        Node name attrs nodes ->
+            let 
+                nodes' = P.map (applyCssRule rule) nodes
+                (match, removeIdClass) = matchSelector ruleName name attrs
+                rules' = P.concatMap (\(k, v) -> k ++ ":" ++ v ++ ";") rules
+                attrs' =
+                    if match then
+                        (if removeIdClass then
+                            P.filter (\(k,v) -> k /= "class" && k /= "id")
+                        else
+                            id) $ ("style", rules') : attrs
+                    else
+                        attrs
+            in
+                Node name attrs' nodes'
+
+applyCssRules :: [Ruleset] -> DOM -> DOM
+applyCssRules rulesets dom =
+    P.foldl (\dom' ruleset -> applyCssRule ruleset dom') dom rulesets
 
 isCloseTag :: T.Text -> Tag -> Bool
 isCloseTag name (TagClose name') = name == name'
@@ -55,6 +93,10 @@ attributesToTuple :: [Attribute] -> [(String, String)]
 attributesToTuple [] = []
 attributesToTuple (Attribute s1 s2 : attrs) =
     (T.unpack s1, T.unpack s2) : (attributesToTuple attrs)
+
+listToTree :: [Tag] -> [DOM]
+listToTree tags =
+    listToTree' tags []
 
 listToTree' :: [Tag] -> [DOM] -> [DOM]
 listToTree' [] pilha = pilha
@@ -79,61 +121,3 @@ listToTree' (tag : tags) pilha =
                 pilha' = Texto (T.unpack txt) : pilha
             in
                 listToTree' tags pilha'
-                --(Texto (T.unpack txt)) : (listToTree' tags pilha')
-
-        -- TagComment !Text     
-        -- TagScript !Tag !Text !Tag    
-        -- TagStyle !Tag !Text !Tag
-
--- <p>
---     <a href="x">
---         link
---     </a>
--- </p>
-
--- [ OpenP, OpenA (href, x), Text link, CloseA, CloseP ]
-
--- P [ OpenA (href, x), Text link, CloseA ]
-
--- [   Node "html" []
---     [   Node "head" []
---         [   Node "title" []
---             [   Texto "Input HTML"  ]
---         ]
---     ,   Node "body" []
---         [   Node "p" []
---             [   Texto "This is a paragraph."    ]
---         ,   Node "p" [("id ","red")]
---             [   Texto " This is small a red paragraph." ]
---         ,   Node "p" [("class ","red")]
---             [   Texto " This is a big red paragraph."   ]
---         ,   Node "p" [("id ","blue")]
---             [   Texto " This is small a blue paragraph."    ]
---         ,   Node "p" [("class ","blue")]
---             [   Texto " This is a big blue paragraph."  ]
---         ]
---     ]
---     ,Texto " "
--- ]
-
-
---     [
---         Node "a" [("href", "x")] [ Texto "link" ]
---     ]
-
--- <html>
---     <head>
---         <title>
---             rsrsrsrs
---         </title>
---     </head>
---     <body>
---     </body>
--- </html>
-    
--- OpenHtml, OpenHead, OpenTitle, rsrsrsrs, CloseTitle, CloseHead, OpenBody, CloseBody, CloseHtml
-
--- Node Html
---     [ Node Head [ Node Title [ rsrsrsrs ] ]
---     , Node Body []
---     ]
