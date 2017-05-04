@@ -28,8 +28,6 @@ handleCss result =
                     print ok'
 -}
 
-(|>) = flip ($)
-
 {- 
 handleHtml :: Either IOError String -> IO ()
 handleHtml result =
@@ -76,11 +74,15 @@ main = do
     htmlResult <- readFile "src/InputHTML.html"
     cssResult  <- readFile "src/InputCSS.css"
 
-    let dom  = strToDom htmlResult
-    let css  = fromRight . parseCss $ cssResult
-    let dom' = applyCssRules css dom
+    let dom = strToDom htmlResult
 
-    print dom'
-    
+    case parseCss cssResult of
+        Left err ->
+            print err
 
+        Right (cssVariables, cssRules) -> do
 
+            let dom' = applyCssRules cssRules dom
+
+            print cssVariables
+            print cssRules

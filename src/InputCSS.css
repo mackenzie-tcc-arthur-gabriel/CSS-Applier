@@ -1,23 +1,24 @@
-p {
-    color: #000000;
-}
+let
+    @a: 100
+    @b: 200
+    @c: 300px
+    @d: #FFF
 
-.red {
-	font-size: 30px;
-	color: #FF0000;
-}
+p
+    color: @d
 
-.blue {
-	font-size: 30px;
-	color: #0000FF;
-}
+.red
+    font-size: 30px
+    color: #FF0000
 
-#blue {
-	font-size: 15px;
-	color: #0000FF;
-}
+.blue
+    font-size: 30px
+    color: #0000FF
 
-#red {
-	font-size: 15px;
-	color: #FF0000;
-}
+#blue
+    font-size: 15px
+    color: #0000FF
+
+#red
+    font-size: 15px
+    color: #FF0000

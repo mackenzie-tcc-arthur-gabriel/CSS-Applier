@@ -42,12 +42,12 @@
   (major1) == 1 && (major2) <  2 || \
   (major1) == 1 && (major2) == 2 && (minor) <= 2)
 
-/* tool alex-3.2.1 */
-#define TOOL_VERSION_alex "3.2.1"
+/* tool alex-3.1.4 */
+#define TOOL_VERSION_alex "3.1.4"
 #define MIN_TOOL_VERSION_alex(major1,major2,minor) (\
   (major1) <  3 || \
-  (major1) == 3 && (major2) <  2 || \
-  (major1) == 3 && (major2) == 2 && (minor) <= 1)
+  (major1) == 3 && (major2) <  1 || \
+  (major1) == 3 && (major2) == 1 && (minor) <= 4)
 
 /* tool gcc-4.2.1 */
 #define TOOL_VERSION_gcc "4.2.1"
@@ -98,12 +98,19 @@
   (major1) == 0 && (major2) <  67 || \
   (major1) == 0 && (major2) == 67 && (minor) <= 0)
 
-/* tool hscolour-1.24 */
-#define TOOL_VERSION_hscolour "1.24"
+/* tool hscolour-1.22 */
+#define TOOL_VERSION_hscolour "1.22"
 #define MIN_TOOL_VERSION_hscolour(major1,major2,minor) (\
   (major1) <  1 || \
-  (major1) == 1 && (major2) <  24 || \
-  (major1) == 1 && (major2) == 24 && (minor) <= 0)
+  (major1) == 1 && (major2) <  22 || \
+  (major1) == 1 && (major2) == 22 && (minor) <= 0)
 
-#define CURRENT_PACKAGE_KEY "tcc_4oXX1tfX0WgDRyRroaxPmU"
+/* tool pkg-config-0.29.1 */
+#define TOOL_VERSION_pkg_config "0.29.1"
+#define MIN_TOOL_VERSION_pkg_config(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  29 || \
+  (major1) == 0 && (major2) == 29 && (minor) <= 1)
+
+#define CURRENT_PACKAGE_KEY "tcc_A26v09hVDmTH02C5LhO95J"
 

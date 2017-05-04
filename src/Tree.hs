@@ -17,6 +17,8 @@ data DOM
 instance Show DOM where
     show = domToStr 0 True
 
+(|>) = flip ($)
+
 spaces :: Int -> String
 spaces n =
     P.replicate (4 * n) ' '
@@ -39,7 +41,8 @@ domToStr n breakLine (Node name attrs doms) =
 
 matchSelector :: String -> String -> [Rule] -> (Bool, Bool)
 matchSelector ruleName tagName rules =
-    flip P.any rules (\(k, v) ->
+    rules
+    |> P.map (\(k, v) ->
         if k == "id" then
             ("#" ++ v == ruleName, True)
         else if k == "class" then
@@ -48,6 +51,10 @@ matchSelector ruleName tagName rules =
             (True, False)
         else
             (False, False))
+    |> P.filter fst
+    |> (\xs ->
+        if P.length xs > 0 then P.head xs
+                           else (False, False))
 
 applyCssRule :: Ruleset -> DOM -> DOM
 applyCssRule (rule@(ruleName, rules)) dom =

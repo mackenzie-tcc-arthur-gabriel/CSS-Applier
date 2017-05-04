@@ -6,42 +6,67 @@ import Text.Parsec.String as PS
 import Data.Maybe
 
 type Selector = String
+type Variable = (String, String)
 type Rule     = (String, String)
 type Ruleset  = (Selector, [Rule])
-
-paddedChar :: Char -> Parser Char
-paddedChar c =
-    char c <* spaces
 
 ruleName :: Parser String
 ruleName = do
     str1 <- many1 letter
     dash <- optionMaybe (string "-")
-    str2 <- many letter
-    return $ str1 ++ (fromMaybe "" dash) ++ str2
+    case dash of
+        Nothing ->
+            return str1
+
+        Just dash -> do
+            str2 <- many1 letter
+            return $ str1 ++ dash ++ str2
 
 rule :: Parser Rule
 rule = do
-    p <- ruleName <* paddedChar ':'
-    v <- many1 (noneOf ":;") <* paddedChar ';'
-    return $ (p, v)
+    p <- string "    " *> ruleName
+    char ':' <* spaces
+    v <- many1 (noneOf ":;\n")
+    newline
+    return (p, v)
 
 selector :: Parser String
 selector =
-    many1 (oneOf ".#" <|> letter <|> digit) <* spaces
+    many1 (oneOf ".#" <|> alphaNum)
 
 ruleset :: Parser Ruleset
 ruleset = do
-    spaces
-    s <- selector `sepBy1` spaces
-    r <- paddedChar '{' *> many1 rule <* paddedChar '}'
-    spaces
-    return (unwords s, r)
+    many newline
+    s <- selector <* newline
+    r <- many1 rule
+    many newline
+    return (s, r)
 
 rulesets :: Parser [Ruleset]
 rulesets = do
-    many ruleset
+    many1 ruleset <* eof
 
-parseCss :: String -> Either ParseError [Ruleset]
+variable :: Parser (String, String)
+variable = do
+    string "    "
+    name <- string "@" >> ruleName
+    char ':' <* spaces
+    value <- many1 (noneOf ":;\n")
+    newline
+    return (name, value)
+
+let_scope :: Parser [Variable]
+let_scope = do
+    string "let" <* newline
+    xs <- many1 variable
+    return xs
+
+dss :: Parser ([Variable], [Ruleset])
+dss = do
+    vars  <- let_scope
+    rules <- rulesets
+    return (vars, rules)
+
+parseCss :: String -> Either ParseError ([Variable], [Ruleset])
 parseCss input =
-    parse rulesets "css parser" input
+    parse dss "css parser" input
