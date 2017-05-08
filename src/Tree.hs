@@ -1,5 +1,7 @@
 module Tree where
 
+import Data.List
+import Data.Char
 import Prelude as P
 import Text.Taggy.Types
 import Data.Text as T
@@ -18,6 +20,26 @@ instance Show DOM where
     show = domToStr 0 True
 
 (|>) = flip ($)
+
+-- Regras universais para implementar regras específicas de cada navegador para uma mesma funcionalidade
+specialRules :: [(String, [String])]
+specialRules =
+    [ ("border-radius", ["-moz-border-radius", "-webkit-border-radius"
+                        , "-khtml-border-radius", "-o-border-radius" ])
+    ]
+
+strEq :: String -> String -> Bool
+strEq a b =
+    (P.map Data.Char.toLower a) == (P.map Data.Char.toLower b)
+
+getSpecialRules :: (String, String) -> [(String, String)]
+getSpecialRules (name, value) =
+    case Data.List.find (strEq name . fst) specialRules of
+        Nothing ->
+            [(name, value)]
+
+        Just (_, ruleNames) ->
+            P.map (\r -> (r, value)) ruleNames
 
 spaces :: Int -> String
 spaces n =
@@ -62,9 +84,17 @@ applyCssRule (rule@(ruleName, rules)) dom =
         Texto str -> Texto str
         Node name attrs nodes ->
             let 
-                nodes' = P.map (applyCssRule rule) nodes
-                (match, removeIdClass) = matchSelector ruleName name attrs
-                rules' = P.concatMap (\(k, v) -> k ++ ":" ++ v ++ ";") rules
+                nodes' =
+                    P.map (applyCssRule rule) nodes
+
+                (match, removeIdClass) =
+                    matchSelector ruleName name attrs
+
+                rules' =
+                    rules
+                    |> P.concatMap getSpecialRules
+                    |> P.concatMap (\(k, v) -> k ++ ":" ++ v ++ ";")
+
                 attrs' =
                     if match then
                         (if removeIdClass then

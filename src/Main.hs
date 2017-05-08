@@ -86,3 +86,5 @@ main = do
 
             print cssVariables
             print cssRules
+            print dom
+            print dom'
