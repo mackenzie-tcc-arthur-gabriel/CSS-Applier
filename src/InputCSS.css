@@ -5,7 +5,7 @@ let
     @d: #FFF
 
 section
-    color: @d
+    xcolor: @d
 
 .red
     font-size: 30px

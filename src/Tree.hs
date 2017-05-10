@@ -7,6 +7,7 @@ import Text.Taggy.Types
 import Data.Text as T
 
 import ParseCss
+import Misc
 
 data DOM
     = Node
@@ -18,8 +19,6 @@ data DOM
 
 instance Show DOM where
     show = domToStr 0 True
-
-(|>) = flip ($)
 
 -- Regras universais para implementar regras específicas de cada navegador para uma mesma funcionalidade
 specialRules :: [(String, [String])]
@@ -61,22 +60,30 @@ domToStr n breakLine (Node name attrs doms) =
         spaces n ++ "<"  ++ name ++ attrs' ++ ">\n" ++ childs ++ "\n" ++
         spaces n ++ "</" ++ name ++ ">"   ++ (if breakLine then "\n" else "")
 
+-- Returns (T1, T2)
+-- T1 is True when selector matches
+-- T2 is True when the id/class will be removed from attrs
 matchSelector :: String -> String -> [Rule] -> (Bool, Bool)
 matchSelector ruleName tagName rules =
-    rules
-    |> P.map (\(k, v) ->
-        if k == "id" then
-            ("#" ++ v == ruleName, True)
-        else if k == "class" then
-            ("." ++ v == ruleName, True)
-        else if ruleName == tagName then
-            (True, False)
+    if strEq ruleName tagName then
+        (True, False)
+    else
+        rules
+        |> P.map (\(k, v) ->
+                 if k == "id"    then ("#" ++ v == ruleName, True)
+            else if k == "class" then ("." ++ v == ruleName, True)
+                                 else (False, False))
+        |> P.filter fst
+        |> (\xs -> if P.length xs > 0 then P.head xs else (False, False))
+
+mergeStyle :: [(String, String)] -> [(String, String)]
+mergeStyle attrs =
+    P.foldl (\(styleStr, attrsAcc) (attr@(name, value)) ->
+        if strEq "style" name then
+            (styleStr ++ value, attrsAcc)
         else
-            (False, False))
-    |> P.filter fst
-    |> (\xs ->
-        if P.length xs > 0 then P.head xs
-                           else (False, False))
+            (styleStr, attr : attrsAcc)) ("", []) attrs
+    |> (\(styleStr, attributes) -> ("style", styleStr) : attributes)
 
 applyCssRule :: Ruleset -> DOM -> DOM
 applyCssRule (rule@(ruleName, rules)) dom =
@@ -100,7 +107,7 @@ applyCssRule (rule@(ruleName, rules)) dom =
                         (if removeIdClass then
                             P.filter (\(k,v) -> k /= "class" && k /= "id")
                         else
-                            id) $ ("style", rules') : attrs
+                            id) $ mergeStyle $ ("style", rules') : attrs
                     else
                         attrs
             in
@@ -108,7 +115,7 @@ applyCssRule (rule@(ruleName, rules)) dom =
 
 applyCssRules :: [Ruleset] -> DOM -> DOM
 applyCssRules rulesets dom =
-    P.foldl (\dom' ruleset -> applyCssRule ruleset dom') dom rulesets
+    P.foldr applyCssRule dom rulesets
 
 isCloseTag :: T.Text -> Tag -> Bool
 isCloseTag name (TagClose name') = name == name'

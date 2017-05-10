@@ -3,7 +3,10 @@ module ParseCss where
 import Text.Parsec as P
 import Text.Parsec.String as PS
 
+import Data.List
+import Data.Text
 import Data.Maybe
+import Misc
 
 type Selector = String
 type Variable = (String, String)
@@ -42,30 +45,45 @@ ruleset = do
     many newline
     return (s, r)
 
-rulesets :: Parser [Ruleset]
-rulesets = do
+parse_rulesets :: Parser [Ruleset]
+parse_rulesets = do
     many1 ruleset <* eof
 
-variable :: Parser (String, String)
-variable = do
+parse_variable :: Parser (String, String)
+parse_variable = do
     string "    "
-    name <- string "@" >> ruleName
+    name <- string "@" *> ruleName
     char ':' <* spaces
     value <- many1 (noneOf ":;\n")
     newline
-    return (name, value)
+    return ("@" ++ name, value)
 
-let_scope :: Parser [Variable]
-let_scope = do
+parse_let_scope :: Parser [Variable]
+parse_let_scope = do
     string "let" <* newline
-    xs <- many1 variable
+    xs <- many1 parse_variable
     return xs
+
+replaceVarsRule :: [Variable] -> Rule -> Rule
+replaceVarsRule vars (ruleName, ruleValue) =
+    vars
+        |> Data.List.find ((==) ruleValue . fst)
+        |> fmap (\(varName, varValue) -> (ruleName, replaceStr varName varValue ruleValue))
+        |> fromMaybe (ruleName, ruleValue)
+
+replaceVarsRules :: [Variable] -> [Rule] -> [Rule]
+replaceVarsRules vars rules =
+    Data.List.map (replaceVarsRule vars) rules    
+
+replaceVarsRulesets :: [Variable] -> [Ruleset] -> [Ruleset]
+replaceVarsRulesets vars rulesets =
+    Data.List.map (mapSnd (replaceVarsRules vars)) rulesets
 
 dss :: Parser ([Variable], [Ruleset])
 dss = do
-    vars  <- let_scope
-    rules <- rulesets
-    return (vars, rules)
+    vars     <- parse_let_scope
+    rulesets <- parse_rulesets
+    return (vars, replaceVarsRulesets vars rulesets)
 
 parseCss :: String -> Either ParseError ([Variable], [Ruleset])
 parseCss input =

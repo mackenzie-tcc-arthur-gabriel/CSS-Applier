@@ -1,7 +1,8 @@
 module Main where
 
-import ParseCss (parseCss)
-import Tree 
+import Misc
+import Tree
+import ParseCss (parseCss) 
 
 import Control.Exception as CE -- CE.try
 import Data.Either.Utils
@@ -86,5 +87,5 @@ main = do
 
             print cssVariables
             print cssRules
-            print dom
+            --print dom
             print dom'
